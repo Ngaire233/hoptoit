@@ -7,12 +7,11 @@
     <style>
         /* Global Styles */
         :root {
-            --primary: #2c2c2c;
+            --primary: #8c6f5f;
             --secondary: #f5e8df;
-            --accent: #9d8574;
             --light: #ffffff;
-            --dark: #1a1a1a;
-            --highlight: #d4af37;
+            --dark: #333333;
+            --accent: #e0cec6;
         }
         
         * {
@@ -31,7 +30,6 @@
         h1, h2, h3, h4 {
             color: var(--primary);
             margin-bottom: 1rem;
-            font-weight: 600;
         }
         
         p {
@@ -49,69 +47,20 @@
             display: inline-block;
             background-color: var(--primary);
             color: var(--light);
-            padding: 12px 24px;
-            border-radius: 0;
+            padding: 10px 20px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--primary);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
         .btn:hover {
-            background-color: transparent;
-            color: var(--primary);
-        }
-        
-        .btn:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--highlight);
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .btn:hover:after {
-            visibility: visible;
-            width: 100%;
+            background-color: #715a4c;
+            transform: translateY(-2px);
         }
         
         section {
-            padding: 5rem 0;
-        }
-        
-        .section-header {
-            position: relative;
-            margin-bottom: 3rem;
-            display: inline-block;
-        }
-        
-        .section-header:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: var(--highlight);
-            bottom: -10px;
-            left: 0;
-        }
-        
-        .quote {
-            font-style: italic;
-            color: var(--primary);
-            font-size: 1.2rem;
-            position: relative;
-            padding: 1.5rem;
-            border-left: 3px solid var(--highlight);
-            background-color: rgba(0,0,0,0.02);
-            margin: 2rem 0;
+            padding: 4rem 0;
         }
         
         /* Header */
@@ -136,7 +85,7 @@
         }
         
         .logo svg {
-            width: 180px;
+            width: 240px; /* Increased from 180px */
             height: auto;
         }
         
@@ -233,28 +182,16 @@
         /* About Section */
         .about {
             background-color: var(--light);
+            text-align: center; /* Center the content */
         }
         
         .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 3rem;
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the container */
         }
         
         .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
         }
         
         /* Services Section */
@@ -348,55 +285,50 @@
             margin: 0 auto 1.5rem;
         }
         
-        /* Contact Section */
+        /* Contact Section - Updated to show large clickable icon */
         .contact {
             background-color: var(--secondary);
+            text-align: center;
         }
         
         .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-cta {
             display: flex;
-            justify-content: space-between;
-            gap: 3rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
         }
         
-        .contact-info {
-            flex: 1;
+        .contact-icon-link {
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
         
-        .contact-info p {
-            margin-bottom: 0.5rem;
+        .contact-icon-link:hover {
+            transform: translateY(-5px);
         }
         
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-        
-        .contact-form {
-            flex: 2;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        .form-group textarea {
+        .contact-large-icon {
+            width: 120px;
             height: 120px;
+            fill: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-icon-link:hover .contact-large-icon {
+            fill: #715a4c;
+        }
+        
+        .contact-text {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0;
         }
         
         /* Testimonials */
@@ -506,6 +438,10 @@
         
         /* Responsive Styles */
         @media (max-width: 768px) {
+            .logo svg {
+                width: 200px; /* Smaller on mobile but still bigger than original */
+            }
+            
             .header-content {
                 flex-direction: column;
                 text-align: center;
@@ -517,11 +453,6 @@
             
             nav ul li {
                 margin: 0 1rem;
-            }
-            
-            .about-content, 
-            .contact-content {
-                flex-direction: column;
             }
             
             .process-steps {
@@ -537,6 +468,15 @@
                 width: 100%;
                 max-width: 300px;
                 margin-bottom: 2rem;
+            }
+            
+            .contact-large-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .contact-text {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -584,7 +524,7 @@
         <div class="container">
             <h1>Agile-Inspired Organizing Solutions</h1>
             <p>Creating calm, functional spaces for expats in China through a proven step-by-step organizing process.</p>
-            <a href="#contact" class="btn">Get Started</a>
+            <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Get Started</a>
         </div>
     </section>
 
@@ -596,10 +536,7 @@
                 <p>Welcome to Hop To It Organizing! I'm a British/New Zealand professional organizer with a background in software product management and a passion for creating calm, functional spaces.</p>
                 <p>After years of helping teams deliver complex projects using Agile methodology, I realized these same principles could transform how we organize our homes. Breaking big projects into manageable tasks, adapting to your needs, and focusing on what matters most to you.</p>
                 <p>As an expat myself, I understand the unique challenges of setting up home in China, managing frequent relocations, and dealing with accumulation of items. My mission is to help you create beautiful, uncluttered spaces that work for your lifestyle.</p>
-                <a href="#contact" class="btn">Let's Transform Your Space</a>
-            </div>
-            <div class="about-image">
-                <img src="/api/placeholder/600/400" alt="Organized living space" />
+                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Let's Transform Your Space</a>
             </div>
         </div>
     </section>
@@ -695,38 +632,23 @@
         </div>
     </section>
 
-
-
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container contact-content">
-            <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <p>Ready to transform your space? Contact us to schedule a consultation.</p>
-                <p><i>📍</i> Ningbo, China</p>
+            <h2>Get In Touch</h2>
+            <p>Ready to transform your space? Let's get started!</p>
+            
+            <div class="contact-cta">
+                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="contact-icon-link">
+                    <svg class="contact-large-icon" viewBox="0 0 24 24">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                        <path d="M8,12V14H16V12H8M8,16V18H13V16H8Z" />
+                    </svg>
+                </a>
+                <p class="contact-text">Get started by completing this form!</p>
             </div>
-            <div class="contact-form">
-                <h3>Schedule a Consultation</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tell us about your organizing needs</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
+            
+            <p style="margin-top: 2rem;"><i>📍</i> Ningbo, China</p>
         </div>
     </section>
 
@@ -770,5 +692,32 @@
             <p>&copy; 2025 Hop To It Organizing. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
