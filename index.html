@@ -579,6 +579,108 @@
         </div>
     </section>
 
+    /* FAQ Section */
+.FAQ {
+    background-color: var(--light);
+    text-align: center;
+}
+
+.faq-container {
+    background: var(--light);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(140, 111, 95, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--accent);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 25px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.faq-question:hover {
+    background-color: var(--secondary);
+}
+
+.faq-question:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+}
+
+.faq-icon {
+    font-size: 1.2rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: var(--secondary);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 25px 25px 25px;
+}
+
+.faq-answer p {
+    color: var(--dark);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer em {
+    color: var(--primary);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 20px 20px 20px;
+    }
+}
+
     <!-- Process Section -->
     <section class="process" id="process">
         <div class="container">
@@ -606,6 +708,100 @@
                     <div class="step-number">4</div>
                     <h3>Review & Adjust</h3>
                     <p>We'll review progress, make any needed adjustments, and plan the next steps for continued success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- FAQ Section -->
+    <section class="FAQ" id="FAQ">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <p style="margin-bottom: 3rem;">Everything you need to know about working with Hop To It Organizing</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        I think it might be intrusive and embarrassing to have you help?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>This is the first thing my husband said to me when I mentioned helping others organise. I get this, home is our personal space but I know from years of moving around the world AND managing software projects that not everything goes to plan. I've learned that chaos is just life happening - not a reflection of who you are. There's zero judgment here, only pure joy and excitement about helping you create a space that actually works for your life (and yes I know I'm a little odd in that I get excited about cleaning and organising!)</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What happens in our first session?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our first session is all about assessment and planning - think of it as gathering project requirements! We'll spend about 70 minutes together, starting with coffee/tea and a quick chat about your priorities.</p>
+                        <p>Then we'll do a "SCRUM assessment" walkthrough of your priority areas, where I'll document the current state and gather "user stories" from everyone in your household. I love asking questions like <em>"As a 5-year-old, I want to grab my own toys so I can play independently"</em> or <em>"As the ayi, I want to clean the playroom without having to figure out where everything goes."</em> This helps us design systems that work for real life, not just look pretty.</p>
+                        <p>We'll create your organizing "backlog" - a master task list broken down by area - then plan your first "sprint" together. What can we realistically tackle in 2-3 short sessions? What homework can you handle between visits? We'll set clear "done" criteria so you know exactly what success looks like.</p>
+                        <p>I always bring examples of storage solutions and can share Taobao links for budget-friendly options, but honestly, I love finding creative ways to repurpose what you already have. Sometimes the best solution is that unused basket from the bedroom or those containers gathering dust in a closet.</p>
+                        <p>We'll wrap up with some quick wins - a 15-minute declutter of your focus area and one small daily habit to start building momentum. By the end, you'll have a clear roadmap and feel excited about the progress ahead, not overwhelmed by everything that needs to happen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do I need to be there the whole time?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ideally you will be there most of the time, especially during the decluttering stage. However I know there are competing priorities so we will find a rhythm that works for your schedule. And you can choose if you want 'homework' while I'm not there or for me to take over most of it.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Will I need to buy expensive storage solutions?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Of course not! Just like in software development, the best solutions often use what you already have in new ways. I love repurposing storage from other areas of your home. If we do need something new, I'll help you find practical, budget-friendly options or expensive beautiful options if that's what you're in to!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What if I need to move again soon?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>This is where my approach really shines. Having moved multiple times across the world myself, I design systems that are portable and adaptable. We'll focus on solutions that pack easily, work in different spaces, and can be quickly re-established in your next home or make it easy for you to know what you'll sell and what you'll ship!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do you clean while organizing?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. A tidy space is part of the package. More importantly, together we will design a space that is easy for you or your Ayi to clean when I'm finished!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What happens if the system doesn't work after you leave?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>This is exactly why I use the Agile approach! We'll schedule a "sprint review" a few weeks later to see what's working and what needs tweaking. Systems evolve as your life changes, and I'm here to help you adapt them. No organizing solution is ever truly "finished" - it's an iterative process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        I've tried organizing before and it never sticks - why will this be different?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most organizing approaches try to impose a "perfect" system all at once. My method breaks everything into small, manageable changes that build on each other. We'll test what works for your actual lifestyle (not Pinterest's version of your lifestyle) and adjust as we go. It's about progress, not perfection.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -692,6 +888,35 @@
                 hamburger.classList.remove('active');
                 nav.classList.remove('active');
             }
+        });
+          // FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        question.setAttribute('aria-expanded', 'false');
+                    } else {
+                        item.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
         });
     </script>
 </body>
