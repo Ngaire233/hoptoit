@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hop To It Organizing | Agile-Inspired Organizing Solutions</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c2c2c;
+            --secondary: #f5e8df;
+            --accent: #9d8574;
+            --light: #ffffff;
+            --dark: #1a1a1a;
+            --highlight: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 12px 24px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--highlight);
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .btn:hover:after {
+            visibility: visible;
+            width: 100%;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            position: relative;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--highlight);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--primary);
+            font-size: 1.2rem;
+            position: relative;
+            padding: 1.5rem;
+            border-left: 3px solid var(--highlight);
+            background-color: rgba(0,0,0,0.02);
+            margin: 2rem 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo svg {
+            width: 180px;
+            height: auto;
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin-bottom: 5px;
+            position: relative;
+            background-color: var(--primary);
+            border-radius: 3px;
+            z-index: 200;
+            transform-origin: center;
+            transition: transform 0.3s ease-out, opacity 0.2s ease;
+        }
+        
+        .hamburger.active span:first-child {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:last-child {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100vh;
+            background-color: var(--light);
+            box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 150;
+            padding-top: 80px;
+        }
+        
+        nav.active {
+            right: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0 2rem;
+        }
+        
+        nav ul li {
+            margin: 1rem 0;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        nav ul li a:hover {
+            color: #715a4c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--secondary);
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--secondary);
+            text-align: center;
+        }
+        
+        .services-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card h3 {
+            margin-top: 1rem;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            fill: var(--primary);
+        }
+        
+        /* Process Section */
+        .process {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .process-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            width: 22%;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+        }
+        
+        .contact-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            flex: 2;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-logo svg {
+            width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo svg path, 
+        .footer-logo svg rect {
+            stroke: var(--light);
+        }
+        
+        .footer-logo svg text {
+            fill: var(--light);
+        }
+        
+        .footer-links, 
+        .footer-contact {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-links h4, 
+        .footer-contact h4 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 1rem;
+            }
+            
+            .about-content, 
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .step {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Stacked organized boxes -->
+                  <rect x="150" y="120" width="100" height="70" fill="none" stroke="#8c6f5f" stroke-width="3" rx="2" />
+                  <rect x="135" y="140" width="130" height="70" fill="none" stroke="#8c6f5f" stroke-width="3" rx="2" />
+                  <rect x="120" y="160" width="160" height="70" fill="none" stroke="#8c6f5f" stroke-width="3" rx="2" />
+                  
+                  <!-- Bunny ears on top center of the box -->
+                  <path d="M185 100 C180 80, 170 65, 160 70 C150 75, 155 95, 175 110" 
+                        fill="none" stroke="#8c6f5f" stroke-width="3" stroke-linecap="round" />
+                  <path d="M215 100 C220 80, 230 65, 240 70 C250 75, 245 95, 225 110" 
+                        fill="none" stroke="#8c6f5f" stroke-width="3" stroke-linecap="round" />
+                  
+                  <!-- Company Name Text -->
+                  <text x="200" y="260" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#8c6f5f">HOP TO IT</text>
+                  <text x="200" y="285" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#8c6f5f">ORGANIZING</text>
+                </svg>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Agile-Inspired Organizing Solutions</h1>
+            <p>Creating calm, functional spaces for expats in China through a proven step-by-step organizing process.</p>
+            <a href="#contact" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-content">
+            <div class="about-text">
+                <h2>About Hop To It Organizing</h2>
+                <p>Welcome to Hop To It Organizing! I'm a British/New Zealand professional organizer with a background in software product management and a passion for creating calm, functional spaces.</p>
+                <p>After years of helping teams deliver complex projects using Agile methodology, I realized these same principles could transform how we organize our homes. Breaking big projects into manageable tasks, adapting to your needs, and focusing on what matters most to you.</p>
+                <p>As an expat myself, I understand the unique challenges of setting up home in China, managing frequent relocations, and dealing with accumulation of items. My mission is to help you create beautiful, uncluttered spaces that work for your lifestyle.</p>
+                <a href="#contact" class="btn">Let's Transform Your Space</a>
+            </div>
+            <div class="about-image">
+                <img src="/api/placeholder/600/400" alt="Organized living space" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-intro">
+                <h2>Our Services</h2>
+                <p>Whether you need a complete home transformation or help with specific spaces, our Agile-inspired approach ensures personalized, efficient, and sustainable organizing solutions.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M3 6h18v12H3V6m9 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3M7 8a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2v-4a2 2 0 0 1-2-2H7Z" />
+                    </svg>
+                    <h3>Full Home Organization</h3>
+                    <p>Comprehensive organizing services for your entire home, creating systems that work for your lifestyle and maintaining order long-term.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-4-4h-4v-2h2c1.1 0 2-.89 2-2V9c0-1.11-.9-2-2-2H9v2h4v2h-2c-1.1 0-2 .89-2 2v4h6v-2z" />
+                    </svg>
+                    <h3>Room-by-Room Solutions</h3>
+                    <p>Focused organizing for specific areas like kitchens, closets, home offices, and children's spaces with customized storage solutions.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                    <h3>Relocation Services</h3>
+                    <p>Streamlining moves with pre-move decluttering, packing strategies, and efficient unpacking and setup in your new home.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </svg>
+                    <h3>Decluttering & Simplifying</h3>
+                    <p>Targeted decluttering sessions with compassionate guidance to help you let go of excess and create more breathing room.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M12 20.25c2.42 0 4.5-1.04 5.94-2.67L13 12.75v-8.5C8.25 4.46 4.5 8.1 4.5 12.75c0 4.14 3.36 7.5 7.5 7.5z" />
+                        <path d="M12 2.25V12l4.75 4.5c.54-.81.94-1.73 1.15-2.75H23a10.7 10.7 0 0 0-11-11z" />
+                    </svg>
+                    <h3>Storage Optimization</h3>
+                    <p>Maximizing your storage potential with creative solutions for small spaces and specialized storage needs.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <path d="M16 17l5-5-5-5" />
+                        <path d="M21 12H9" />
+                    </svg>
+                    <h3>Virtual Organizing</h3>
+                    <p>Remote guidance and support through video consultations for those who prefer to DIY with expert direction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="process-intro">
+                <h2>Our Agile-Inspired Process</h2>
+                <p>Using principles from Agile project management, we break down organizing projects into manageable steps, making the process stress-free and effective.</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Backlog Creation</h3>
+                    <p>We'll walk through your home and create a master list of all spaces to organize, breaking each into manageable tasks.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Sprint Planning</h3>
+                    <p>Together we'll choose which areas to focus on first and create a timeline that fits your schedule.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Sprint Execution</h3>
+                    <p>We'll tackle the agreed-on tasks step by step with hands-on organizing and implementation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Review & Adjust</h3>
+                    <p>We'll review progress, make any needed adjustments, and plan the next steps for continued success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container contact-content">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your space? Contact us to schedule a consultation.</p>
+                <p><i>📍</i> Ningbo, China</p>
+            </div>
+            <div class="contact-form">
+                <h3>Schedule a Consultation</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell us about your organizing needs</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Stacked organized boxes -->
+                  <rect x="150" y="120" width="100" height="70" fill="none" stroke="#ffffff" stroke-width="3" rx="2" />
+                  <rect x="135" y="140" width="130" height="70" fill="none" stroke="#ffffff" stroke-width="3" rx="2" />
+                  <rect x="120" y="160" width="160" height="70" fill="none" stroke="#ffffff" stroke-width="3" rx="2" />
+                  
+                  <!-- Bunny ears on top center of the box -->
+                  <path d="M185 100 C180 80, 170 65, 160 70 C150 75, 155 95, 175 110" 
+                        fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                  <path d="M215 100 C220 80, 230 65, 240 70 C250 75, 245 95, 225 110" 
+                        fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                  
+                  <!-- Company Name Text -->
+                  <text x="200" y="260" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">HOP TO IT</text>
+                  <text x="200" y="285" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#ffffff">ORGANIZING</text>
+                </svg>
+                <p>Creating calm, functional spaces for expats in China through an Agile-inspired process.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Ningbo, China</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Hop To It Organizing. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
