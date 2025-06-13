@@ -579,6 +579,48 @@
                 padding: 0 20px 20px 20px;
             }
         }
+        /* Hero section with image */
+.hero-layout {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-image {
+    flex: 0 0 350px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(140, 111, 95, 0.2);
+}
+
+/* Mobile responsive for hero */
+@media (max-width: 768px) {
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .hero-text {
+        text-align: center;
+    }
+    
+    .hero-image {
+        flex: none;
+        max-width: 300px;
+    }
+}
     </style>
 </head>
 <body>
@@ -621,13 +663,20 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Agile-Inspired Organizing Solutions</h1>
-            <p>I've been organizing my whole life - from rearranging the family 'junk drawer' for fun as a little girl to managing complex software projects that seemed impossible to untangle. Now I help expats in China do the same thing with their homes: turning chaos into calm, one space at a time.</p>
-            <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Get Started</a>
+<section class="hero">
+    <div class="container">
+        <div class="hero-layout">
+            <div class="hero-text">
+                <h1>Agile-Inspired Organizing Solutions</h1>
+                <p>From managing impossible software projects to organizing chaotic homes - I help expat families in China transform their most stressful spaces into peaceful havens.</p>
+                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Get Started</a>
+            </div>
+            <div class="hero-image">
+                <img src="Screenshot 2025-06-13 at 11.00.12.png" alt="Person organizing items in a drawer">
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- About Section -->
     <section class="about" id="about">
