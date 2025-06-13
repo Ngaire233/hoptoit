@@ -62,7 +62,46 @@
         section {
             padding: 4rem 0;
         }
+        /* Add transitions to your existing header rule */
+header {
+    /* your existing styles... */
+    transition: padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* New shrunk header state */
+    header.shrunk {
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Add transition to your existing logo rule */
+    .logo svg {
+        /* your existing styles... */
+        transition: width 0.3s ease;
+    }
+    
+    /* Shrunk logo state */
+    header.shrunk .logo svg {
+        width: 180px; /* Smaller logo when shrunk */
+    }
+    
+    /* Mobile-specific shrinking */
+    @media (max-width: 768px) {
+        header.shrunk {
+            padding: 0.25rem 0; /* Very compact on mobile */
+        }
         
+        header.shrunk .logo svg {
+            width: 80px; /* Much smaller logo on mobile when shrunk */
+        }
+        
+        /* Optional: shrink hamburger slightly */
+        header.shrunk .hamburger span {
+            width: 22px;
+            height: 2px;
+        }
+    }
+            
         /* Header */
         header {
             background-color: var(--light);
@@ -1169,6 +1208,37 @@
             }
         });
 
+                // Shrinking Header Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            let scrollThreshold = 100; // Start shrinking after 100px scroll
+            let ticking = false;
+            
+            function updateHeader() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    header.classList.add('shrunk');
+                } else {
+                    header.classList.remove('shrunk');
+                }
+                
+                ticking = false;
+            }
+            
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', requestTick);
+            
+            // Check on page load
+            updateHeader();
+        });
         // FAQ functionality
         document.addEventListener('DOMContentLoaded', function() {
             const faqItems = document.querySelectorAll('.faq-item');
