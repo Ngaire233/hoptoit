@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Request | Hop To It Organizing</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #8c6f5f;
+            --secondary: #f5e8df;
+            --light: #ffffff;
+            --dark: #333333;
+            --accent: #e0cec6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(140, 111, 95, 0.2);
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background: var(--primary);
+            color: var(--light);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .form-header h1 {
+            color: var(--light);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .form-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .form-content {
+            padding: 2rem;
+        }
+        
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--accent);
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .required {
+            color: #d32f2f;
+        }
+        
+        input[type="text"], 
+        input[type="email"], 
+        input[type="tel"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background: var(--secondary);
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .checkbox-item:hover {
+            background: var(--accent);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0 0.5rem 0 0;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            font-weight: normal;
+            color: var(--dark);
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--secondary);
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .radio-item:hover {
+            background: var(--accent);
+        }
+        
+        .radio-item input[type="radio"] {
+            width: auto;
+            margin: 0 0.75rem 0 0;
+            transform: scale(1.2);
+        }
+        
+        .radio-item label {
+            margin: 0;
+            font-weight: normal;
+            color: var(--dark);
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .preference-section {
+            background: var(--secondary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .preference-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .preference-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .submit-button {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-button:hover {
+            background-color: #715a4c;
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            color: #715a4c;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .form-content {
+                padding: 1rem;
+            }
+            
+            .form-header {
+                padding: 1.5rem;
+            }
+            
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Hop to it - Intake Form</h1>
+            <p>Thank you for completing this intake form. I look forward to creating organized spaces that work beautifully for you and your lifestyle!</p>
+        </div>
+        
+        <div class="form-content">
+            <a href="/" class="back-link">← Back to Website</a>
+            
+            <form name="consultation-intake" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="consultation-intake">
+                
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <div class="section-title">Basic Information</div>
+                    
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="wechat">Phone Number to Connect on WeChat <span class="required">*</span></label>
+                    <input type="tel" id="wechat" name="wechat" required>
+                    
+                    <label for="household">People living in home</label>
+                    <textarea id="household" name="household" placeholder="e.g., 2 adults, 1 child (age 5), 1 pet"></textarea>
+                    
+                    <label for="moving">Are you planning to move in the next 1 year?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="moving-yes" name="moving" value="Yes">
+                            <label for="moving-yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="moving-no" name="moving" value="No">
+                            <label for="moving-no">No</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="moving-maybe" name="moving" value="Maybe">
+                            <label for="moving-maybe">Maybe</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Areas to Organize -->
+                <div class="form-section">
+                    <div class="section-title">Areas to Organize</div>
+                    <label>Please check all areas you would like to organize:</label>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="living-room" name="areas" value="Living Room">
+                            <label for="living-room">Living Room</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="entry-way" name="areas" value="Entry way">
+                            <label for="entry-way">Entry way</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="kitchen" name="areas" value="Kitchen">
+                            <label for="kitchen">Kitchen</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="storage1" name="areas" value="Storage Area 1">
+                            <label for="storage1">Storage Area 1</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="storage2" name="areas" value="Storage Area 2">
+                            <label for="storage2">Storage Area 2</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="master-bedroom" name="areas" value="Master Bedroom">
+                            <label for="master-bedroom">Master Bedroom</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bedroom1" name="areas" value="Bedroom 1">
+                            <label for="bedroom1">Bedroom 1</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bedroom2" name="areas" value="Bedroom 2">
+                            <label for="bedroom2">Bedroom 2</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bedroom3" name="areas" value="Bedroom 3">
+                            <label for="bedroom3">Bedroom 3</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="study-area" name="areas" value="Study Area">
+                            <label for="study-area">Study Area</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="office" name="areas" value="Office">
+                            <label for="office">Office</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bathroom1" name="areas" value="Bathroom 1">
+                            <label for="bathroom1">Bathroom 1</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bathroom2" name="areas" value="Bathroom 2">
+                            <label for="bathroom2">Bathroom 2</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bathroom3" name="areas" value="Bathroom 3">
+                            <label for="bathroom3">Bathroom 3</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Special Categories -->
+                <div class="form-section">
+                    <div class="section-title">Special Categories</div>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="photos" name="special-categories" value="Photos/Memorabilia">
+                            <label for="photos">Photos/Memorabilia</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="documents" name="special-categories" value="Important Documents">
+                            <label for="documents">Important Documents</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hobby" name="special-categories" value="Hobby Supplies">
+                            <label for="hobby">Hobby Supplies</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="holiday" name="special-categories" value="Holiday Decorations">
+                            <label for="holiday">Holiday Decorations</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="collections" name="special-categories" value="Collections">
+                            <label for="collections">Collections</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="children" name="special-categories" value="Children's Items">
+                            <label for="children">Children's Items</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Goals and Priorities -->
+                <div class="form-section">
+                    <div class="section-title">Goals & Priorities</div>
+                    
+                    <label for="goals">What are your goals? (i.e. emotional peace, more space, everything has a place, beautiful aesthetic?)</label>
+                    <textarea id="goals" name="goals" placeholder="Describe what you hope to achieve through organizing..."></textarea>
+                    
+                    <label for="top-priorities">List your top 3 priorities to organise</label>
+                    <textarea id="top-priorities" name="top-priorities" placeholder="1. &#10;2. &#10;3."></textarea>
+                    
+                    <label for="important-features">What features are most important to you in these priority areas?</label>
+                    <textarea id="important-features" name="important-features"></textarea>
+                    
+                    <label for="past-obstacles">What has prevented you from getting organized in the past?</label>
+                    <textarea id="past-obstacles" name="past-obstacles"></textarea>
+                </div>
+                
+                <!-- Organizing Preferences -->
+                <div class="form-section">
+                    <div class="section-title">Your Organizing Preferences</div>
+                    <p style="margin-bottom: 1.5rem; color: #666; font-style: italic;">Select up to 2 statements in each category that are most important to you.</p>
+                    
+                    <div class="preference-section">
+                        <div class="preference-title">Functionality-Based</div>
+                        <div class="preference-subtitle">Select up to 2 statements which are most important to you in organising your home.</div>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="func1" name="functionality-preferences" value="Everything has a designated home">
+                                <label for="func1">Everything has a designated home</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="func2" name="functionality-preferences" value="Frequently used items are easily accessible and visible">
+                                <label for="func2">Frequently used items are easily accessible and visible</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="func3" name="functionality-preferences" value="Systems that accommodate your routine">
+                                <label for="func3">Systems that accommodate your routine</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="func4" name="functionality-preferences" value="Large broad categories for sorting">
+                                <label for="func4">Large broad categories for sorting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="func5" name="functionality-preferences" value="Micro categories for sorting">
+                                <label for="func5">Micro categories for sorting</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preference-section">
+                        <div class="preference-title">Aesthetic-Based</div>
+                        <div class="preference-subtitle">Select up to 2 statements which are most important to you in organising your home.</div>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aes1" name="aesthetic-preferences" value="Visually appealing spaces">
+                                <label for="aes1">Visually appealing spaces</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aes2" name="aesthetic-preferences" value="Visual storage with color coordination">
+                                <label for="aes2">Visual storage with color coordination</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aes3" name="aesthetic-preferences" value="Matching containers/bins">
+                                <label for="aes3">Matching containers/bins</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aes4" name="aesthetic-preferences" value="Labels and clear category markers">
+                                <label for="aes4">Labels and clear category markers</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aes5" name="aesthetic-preferences" value="Hidden Storage">
+                                <label for="aes5">Hidden Storage</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preference-section">
+                        <div class="preference-title">System-Based</div>
+                        <div class="preference-subtitle">Select up to 2 statements which are most important to you in organising your home.</div>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sys1" name="system-preferences" value="Donation/discard system">
+                                <label for="sys1">Donation/discard system</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sys2" name="system-preferences" value="Maintenance routine">
+                                <label for="sys2">Maintenance routine</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sys3" name="system-preferences" value="Paper management system">
+                                <label for="sys3">Paper management system</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sys4" name="system-preferences" value="Seasonal rotation system">
+                                <label for="sys4">Seasonal rotation system</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preference-section">
+                        <div class="preference-title">Client-Specific Preferences</div>
+                        <div class="preference-subtitle">Select up to 2 statements which are most important to you in organising your home.</div>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cli1" name="client-preferences" value="Specific folding methods">
+                                <label for="cli1">Specific folding methods</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cli2" name="client-preferences" value="Special accommodation for things that aren't needed">
+                                <label for="cli2">Special accommodation for things that aren't needed</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cli3" name="client-preferences" value="Sustainable long-term solutions">
+                                <label for="cli3">Sustainable long-term solutions</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cli4" name="client-preferences" value="Open basket storage">
+                                <label for="cli4">Open basket storage</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cli5" name="client-preferences" value="Closed bin storage">
+                                <label for="cli5">Closed bin storage</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preference-section">
+                        <div class="preference-title">Maintenance-Based</div>
+                        <div class="preference-subtitle">Select up to 2 statements which are most important to you in organising your home.</div>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="main1" name="maintenance-preferences" value="Quick reset capabilities (10 minutes or less)">
+                                <label for="main1">Quick reset capabilities (10 minutes or less)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="main2" name="maintenance-preferences" value="Simple enough for all household members to maintain">
+                                <label for="main2">Simple enough for all household members to maintain</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="main3" name="maintenance-preferences" value="Sustainable long-term solutions">
+                                <label for="main3">Sustainable long-term solutions</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="main4" name="maintenance-preferences" value="Other">
+                                <label for="main4">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Logistics -->
+                <div class="form-section">
+                    <div class="section-title">Session Logistics</div>
+                    
+                    <label for="availability">Your availability for organizing sessions:</label>
+                    <textarea id="availability" name="availability" placeholder="Weekdays or Weekends? Hours per day and preferred times? Shorter, more frequent sessions (2-3 hours) / Longer, less frequent sessions (4-6 hours) / Full-day intensive sessions"></textarea>
+                    
+                    <label for="participants">Who will be participating in the organizing process?</label>
+                    <textarea id="participants" name="participants"></textarea>
+                    
+                    <label for="homework">Would you like to schedule "homework" between sessions?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="homework-yes" name="homework" value="Yes">
+                            <label for="homework-yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="homework-no" name="homework" value="No">
+                            <label for="homework-no">No</label>
+                        </div>
+                    </div>
+                    
+                    <label for="budget">Budget range for organizing supplies/storage solutions:</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="budget1" name="budget" value="Less than 100 RMB">
+                            <label for="budget1">Less than 100 RMB</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="budget2" name="budget" value="100 - 500 RMB">
+                            <label for="budget2">100 - 500 RMB</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="budget3" name="budget" value="500 - 1000 RMB">
+                            <label for="budget3">500 - 1000 RMB</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="budget4" name="budget" value="1000 - 3000 RMB">
+                            <label for="budget4">1000 - 3000 RMB</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="budget5" name="budget" value="More than 3000 RMB">
+                            <label for="budget5">More than 3000 RMB</label>
+                        </div>
+                    </div>
+                    
+                    <label for="additional-info">Any other information that would help me understand your organizing need?</label>
+                    <textarea id="additional-info" name="additional-info"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit My Intake Form</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Add some interactivity for the preference sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const preferenceGroups = [
+                'functionality-preferences',
+                'aesthetic-preferences', 
+                'system-preferences',
+                'client-preferences',
+                'maintenance-preferences'
+            ];
+            
+            preferenceGroups.forEach(groupName => {
+                const checkboxes = document.querySelectorAll(`input[name="${groupName}"]`);
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const checkedCount = document.querySelectorAll(`input[name="${groupName}"]:checked`).length;
+                        if (checkedCount >= 2) {
+                            checkboxes.forEach(cb => {
+                                if (!cb.checked) {
+                                    cb.disabled = true;
+                                    cb.parentElement.style.opacity = '0.5';
+                                }
+                            });
+                        } else {
+                            checkboxes.forEach(cb => {
+                                cb.disabled = false;
+                                cb.parentElement.style.opacity = '1';
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
