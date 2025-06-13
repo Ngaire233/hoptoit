@@ -205,22 +205,25 @@
         }
 
         /* Mobile responsive for hero */
-        @media (max-width: 768px) {
-            .hero-layout {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .hero-image {
-                flex: none;
-                max-width: 300px;
-            }
+    @media (max-width: 768px) {
+        .hero-layout {
+            flex-direction: column;
+            text-align: center;
+            gap: 2rem;
         }
+        
+        /* Put image FIRST on mobile */
+        .hero-image {
+            order: -1; /* This moves the image above the text */
+            flex: none;
+            max-width: 250px; /* Slightly smaller on mobile */
+            margin: 0 auto;
+        }
+        
+        .hero-text {
+            text-align: center;
+        }
+    }
         
         /* About Section */
         .about {
