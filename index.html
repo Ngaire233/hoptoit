@@ -689,72 +689,85 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .logo svg {
-                width: 200px; /* Smaller on mobile but still bigger than original */
-            }
-            
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 1rem;
-            }
-            
-            nav ul li {
-                margin: 0 1rem;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .process-steps::before {
-                display: none;
-            }
-            
-            .step {
-                width: 100%;
-                max-width: 300px;
-                margin-bottom: 2rem;
-            }
-            
-            .contact-large-icon {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .contact-text {
-                font-size: 1.1rem;
-            }
-            
-            .faq-question {
-                padding: 20px;
-                font-size: 1rem;
-            }
-
-            .faq-item.active .faq-answer {
-                padding: 0 20px 20px 20px;
-            }
-            
-            .pricing-content {
-                padding: 2rem;
-                margin: 0 1rem;
-            }
-            
-            .pricing-rate {
-                font-size: 2rem;
-            }
-            
-            .pricing-header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
+           /* Responsive Styles */
+    @media (max-width: 768px) {
+        .logo svg {
+            width: 140px; /* Much smaller on mobile */
         }
+        
+        /* Keep header items side by side, don't stack them */
+        .header-content {
+            flex-direction: row; /* Changed from column */
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Reduce header padding on mobile */
+        header {
+            padding: 0.5rem 0; /* Reduced from 1rem */
+        }
+        
+        /* Make hamburger slightly smaller if needed */
+        .hamburger span {
+            width: 25px; /* Reduced from 30px */
+            height: 2px; /* Reduced from 3px */
+        }
+        
+        nav ul {
+            margin-top: 1rem;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        .process-steps {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .process-steps::before {
+            display: none;
+        }
+        
+        .step {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-large-icon {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-size: 1rem;
+        }
+    
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .pricing-content {
+            padding: 2rem;
+            margin: 0 1rem;
+        }
+        
+        .pricing-rate {
+            font-size: 2rem;
+        }
+        
+        .pricing-header {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
     </style>
 </head>
 <body>
