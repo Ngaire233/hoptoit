@@ -701,16 +701,28 @@
         <div class="services-grid">
             <div class="service-card">
                 <svg class="service-icon" viewBox="0 0 24 24">
-                    <rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <rect x="5" y="6" width="4" height="3" rx="1" fill="currentColor" opacity="0.8"/>
-                    <rect x="5" y="10" width="4" height="3" rx="1" fill="currentColor" opacity="0.6"/>
-                    <rect x="5" y="14" width="4" height="3" rx="1" fill="currentColor" opacity="0.4"/>
-                    <rect x="10" y="6" width="4" height="3" rx="1" fill="currentColor" opacity="0.8"/>
-                    <rect x="10" y="10" width="4" height="3" rx="1" fill="currentColor" opacity="0.6"/>
-                    <rect x="15" y="6" width="4" height="3" rx="1" fill="currentColor" opacity="0.8"/>
-                    <circle cx="7" cy="7.5" r="1" fill="white"/>
-                    <circle cx="12" cy="7.5" r="1" fill="white"/>
-                    <circle cx="17" cy="7.5" r="1" fill="white"/>
+                    <!-- House outline -->
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m0 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6m-6 0V9a1 1 0 011-1h4a1 1 0 011 1v2" 
+                          fill="none" stroke="currentColor" stroke-width="2"/>
+                    
+                    <!-- Messy items scattered inside the house -->
+                    <!-- Scattered rectangles (boxes/items) -->
+                    <rect x="7" y="12" width="2" height="1.5" fill="currentColor" opacity="0.8" transform="rotate(25 8 12.75)" rx="0.2"/>
+                    <rect x="10" y="11" width="1.5" height="1" fill="currentColor" opacity="0.6" transform="rotate(-15 10.75 11.5)" rx="0.2"/>
+                    <rect x="13" y="13" width="2" height="1.2" fill="currentColor" opacity="0.7" transform="rotate(35 14 13.6)" rx="0.2"/>
+                    <rect x="8" y="15" width="1.8" height="0.8" fill="currentColor" opacity="0.5" transform="rotate(-20 8.9 15.4)" rx="0.2"/>
+                    <rect x="12" y="16" width="1.5" height="1.3" fill="currentColor" opacity="0.9" transform="rotate(45 12.75 16.65)" rx="0.2"/>
+                    <rect x="15" y="15" width="1.2" height="1" fill="currentColor" opacity="0.6" transform="rotate(-10 15.6 15.5)" rx="0.2"/>
+                    
+                    <!-- Scattered circles (miscellaneous items) -->
+                    <circle cx="9" cy="14" r="0.4" fill="currentColor" opacity="0.7"/>
+                    <circle cx="14" cy="12" r="0.3" fill="currentColor" opacity="0.5"/>
+                    <circle cx="11" cy="17" r="0.5" fill="currentColor" opacity="0.8"/>
+                    <circle cx="16" cy="17" r="0.3" fill="currentColor" opacity="0.6"/>
+                    
+                    <!-- Chaos lines (representing clutter/mess) -->
+                    <path d="M6 13l2 1M9 15l1.5-0.5M13 14l2 0.5M15 16l1-1" 
+                          stroke="currentColor" stroke-width="0.5" opacity="0.4" stroke-linecap="round"/>
                 </svg>
                 <h3>Full Home Organization</h3>
                 <p>Using Agile methodology, we break your entire home into manageable projects. Each 'sprint' focuses on specific areas, adapts to what's working, and builds momentum toward a completely organized home that fits your lifestyle.</p>
