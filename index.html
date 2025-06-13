@@ -179,7 +179,50 @@
             margin: 0 auto 2rem;
         }
         
-               /* About Section */
+        /* Hero section with image */
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-image {
+            flex: 0 0 350px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(140, 111, 95, 0.2);
+        }
+
+        /* Mobile responsive for hero */
+        @media (max-width: 768px) {
+            .hero-layout {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .hero-image {
+                flex: none;
+                max-width: 300px;
+            }
+        }
+        
+        /* About Section */
         .about {
             background-color: var(--light);
         }
@@ -268,6 +311,92 @@
             fill: var(--primary);
         }
         
+        /* Pricing Section */
+        .pricing {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .pricing-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .pricing-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--secondary);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .pricing-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-rate {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .pricing-details {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .pricing-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .pricing-details li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-details li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .pricing-highlight {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .pricing-highlight p {
+            margin: 0;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .pricing-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent);
+        }
+        
         /* Process Section */
         .process {
             background-color: var(--light);
@@ -320,7 +449,7 @@
         
         /* FAQ Section */
         .FAQ {
-            background-color: var(--light);
+            background-color: var(--secondary);
             text-align: center;
         }
 
@@ -611,49 +740,21 @@
             .faq-item.active .faq-answer {
                 padding: 0 20px 20px 20px;
             }
+            
+            .pricing-content {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+            
+            .pricing-rate {
+                font-size: 2rem;
+            }
+            
+            .pricing-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
-        /* Hero section with image */
-.hero-layout {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.hero-text {
-    flex: 1;
-    text-align: left;
-}
-
-.hero-image {
-    flex: 0 0 350px;
-}
-
-.hero-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(140, 111, 95, 0.2);
-}
-
-/* Mobile responsive for hero */
-@media (max-width: 768px) {
-    .hero-layout {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-    
-    .hero-text {
-        text-align: center;
-    }
-    
-    .hero-image {
-        flex: none;
-        max-width: 300px;
-    }
-}
     </style>
 </head>
 <body>
@@ -689,6 +790,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#process">My Process</a></li>
                     <li><a href="#FAQ">FAQ</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -696,22 +798,22 @@
     </header>
 
     <!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-layout">
-            <div class="hero-text">
-                <h1>Agile-Inspired Organizing Solutions</h1>
-                <p>I've been organizing my whole life - from rearranging the family 'junk drawer' for fun as a little girl to managing complex software projects that seemed impossible to untangle. Now I help expats in China do the same thing with their homes: turning chaos into calm, one space at a time.</p>
-                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Get Started</a>
-            </div>
-            <div class="hero-image">
-                <img src="Screenshot 2025-06-13 at 11.00.12.png" alt="Person organizing items in a drawer">
+    <section class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                <div class="hero-text">
+                    <h1>Agile-Inspired Organizing Solutions</h1>
+                    <p>I've been organizing my whole life - from rearranging the family 'junk drawer' for fun as a little girl to managing complex software projects that seemed impossible to untangle. Now I help expats in China do the same thing with their homes: turning chaos into calm, one space at a time.</p>
+                    <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn">Get Started</a>
+                </div>
+                <div class="hero-image">
+                    <img src="Screenshot 2025-06-13 at 11.00.12.png" alt="Person organizing items in a drawer">
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-       <!-- About Section -->
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-layout">
@@ -729,66 +831,66 @@
         </div>
     </section>
 
-   <!-- Services Section -->
-<section class="services" id="services">
-    <div class="container">
-        <div class="services-intro">
-            <h2>Services</h2>
-            <p>Whether you need a complete home transformation or help with specific spaces, my Agile-inspired approach ensures personalized, efficient, and sustainable organizing solutions.</p>
-        </div>
-        <div class="services-grid">
-           <div class="service-card">
-    <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <path d="M20 4L6 14v20c0 1.1.9 2 2 2h24c1.1 0 2-.9 2-2V14L20 4z" fill="#8c6f5f"/>
-        <path d="M15 20h10v14H15V20z" fill="#f5e8df"/>
-        <circle cx="18" cy="26" r="1" fill="#8c6f5f"/>
-        <rect x="22" y="22" width="3" height="3" rx="0.5" fill="#8c6f5f"/>
-        <rect x="22" y="27" width="3" height="3" rx="0.5" fill="#8c6f5f"/>
-    </svg>
-                <h3>Full Home Organization</h3>
-                <p>Using Agile methodology, we break your entire home into manageable projects. Each 'sprint' focuses on specific areas, adapts to what's working, and builds momentum toward a completely organized home that fits your lifestyle.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-intro">
+                <h2>Services</h2>
+                <p>Whether you need a complete home transformation or help with specific spaces, my Agile-inspired approach ensures personalized, efficient, and sustainable organizing solutions.</p>
             </div>
-            <div class="service-card">
+            <div class="services-grid">
+               <div class="service-card">
                 <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="4" y="8" width="32" height="24" rx="2" fill="#f5e8df" stroke="#8c6f5f" stroke-width="2"/>
-                    <line x1="4" y1="16" x2="36" y2="16" stroke="#8c6f5f" stroke-width="1.5"/>
-                    <line x1="20" y1="8" x2="20" y2="32" stroke="#8c6f5f" stroke-width="1.5"/>
-                    <circle cx="12" cy="24" r="2" fill="#8c6f5f"/>
-                    <circle cx="28" cy="24" r="2" fill="#8c6f5f"/>
-                    <rect x="22" y="10" width="6" height="4" rx="1" fill="#e0cec6"/>
-                    <rect x="6" y="18" width="6" height="4" rx="1" fill="#e0cec6"/>
+                    <path d="M20 4L6 14v20c0 1.1.9 2 2 2h24c1.1 0 2-.9 2-2V14L20 4z" fill="#8c6f5f"/>
+                    <path d="M15 20h10v14H15V20z" fill="#f5e8df"/>
+                    <circle cx="18" cy="26" r="1" fill="#8c6f5f"/>
+                    <rect x="22" y="22" width="3" height="3" rx="0.5" fill="#8c6f5f"/>
+                    <rect x="22" y="27" width="3" height="3" rx="0.5" fill="#8c6f5f"/>
                 </svg>
-                <h3>Room-by-Room Solutions</h3>
-                <p>Perfect for targeting your biggest pain points first. We deep-dive into single spaces using focused sprints, gathering 'user stories' from everyone who uses that room to create systems that actually work for real life.</p>
-            </div>
-            <div class="service-card">
-                <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <!-- Bottom row (stable) -->
-                    <rect x="5" y="27" width="7" height="7" fill="#8c6f5f"/>
-                    <rect x="12" y="27" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1"/>
-                    <rect x="19" y="27" width="7" height="7" fill="#e0cec6"/>
-                    <rect x="26" y="27" width="7" height="7" fill="#8c6f5f"/>
-                    
-                    <!-- Second row (slightly unstable) -->
-                    <rect x="8" y="20" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(-5 11.5 23.5)"/>
-                    <rect x="15" y="20" width="7" height="7" fill="#8c6f5f" transform="rotate(3 18.5 23.5)"/>
-                    <rect x="22" y="20" width="7" height="7" fill="#e0cec6" transform="rotate(-8 25.5 23.5)"/>
-                    
-                    <!-- Third row (falling) -->
-                    <rect x="11" y="13" width="7" height="7" fill="#8c6f5f" transform="rotate(-15 14.5 16.5)"/>
-                    <rect x="19" y="13" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(12 22.5 16.5)"/>
-                    
-                    <!-- Top blocks (completely fallen) -->
-                    <rect x="14" y="6" width="7" height="7" fill="#e0cec6" transform="rotate(-25 17.5 9.5)"/>
-                    <rect x="26" y="4" width="6" height="6" fill="#8c6f5f" transform="rotate(35 29 7)"/>
-                    <rect x="6" y="8" width="6" height="6" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(-30 9 11)"/>
-                </svg>
-                <h3>System Tune-ups & Bug Backlog</h3>
-                <p>Your organized systems need regular maintenance, just like software. We address the 'technical debt' that builds up - those quick fixes and workarounds that gradually undermine your organized spaces.</p>
+                    <h3>Full Home Organization</h3>
+                    <p>Using Agile methodology, we break your entire home into manageable projects. Each 'sprint' focuses on specific areas, adapts to what's working, and builds momentum toward a completely organized home that fits your lifestyle.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect x="4" y="8" width="32" height="24" rx="2" fill="#f5e8df" stroke="#8c6f5f" stroke-width="2"/>
+                        <line x1="4" y1="16" x2="36" y2="16" stroke="#8c6f5f" stroke-width="1.5"/>
+                        <line x1="20" y1="8" x2="20" y2="32" stroke="#8c6f5f" stroke-width="1.5"/>
+                        <circle cx="12" cy="24" r="2" fill="#8c6f5f"/>
+                        <circle cx="28" cy="24" r="2" fill="#8c6f5f"/>
+                        <rect x="22" y="10" width="6" height="4" rx="1" fill="#e0cec6"/>
+                        <rect x="6" y="18" width="6" height="4" rx="1" fill="#e0cec6"/>
+                    </svg>
+                    <h3>Room-by-Room Solutions</h3>
+                    <p>Perfect for targeting your biggest pain points first. We deep-dive into single spaces using focused sprints, gathering 'user stories' from everyone who uses that room to create systems that actually work for real life.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <!-- Bottom row (stable) -->
+                        <rect x="5" y="27" width="7" height="7" fill="#8c6f5f"/>
+                        <rect x="12" y="27" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1"/>
+                        <rect x="19" y="27" width="7" height="7" fill="#e0cec6"/>
+                        <rect x="26" y="27" width="7" height="7" fill="#8c6f5f"/>
+                        
+                        <!-- Second row (slightly unstable) -->
+                        <rect x="8" y="20" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(-5 11.5 23.5)"/>
+                        <rect x="15" y="20" width="7" height="7" fill="#8c6f5f" transform="rotate(3 18.5 23.5)"/>
+                        <rect x="22" y="20" width="7" height="7" fill="#e0cec6" transform="rotate(-8 25.5 23.5)"/>
+                        
+                        <!-- Third row (falling) -->
+                        <rect x="11" y="13" width="7" height="7" fill="#8c6f5f" transform="rotate(-15 14.5 16.5)"/>
+                        <rect x="19" y="13" width="7" height="7" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(12 22.5 16.5)"/>
+                        
+                        <!-- Top blocks (completely fallen) -->
+                        <rect x="14" y="6" width="7" height="7" fill="#e0cec6" transform="rotate(-25 17.5 9.5)"/>
+                        <rect x="26" y="4" width="6" height="6" fill="#8c6f5f" transform="rotate(35 29 7)"/>
+                        <rect x="6" y="8" width="6" height="6" fill="#f5e8df" stroke="#8c6f5f" stroke-width="1" transform="rotate(-30 9 11)"/>
+                    </svg>
+                    <h3>System Tune-ups & Bug Backlog</h3>
+                    <p>Your organized systems need regular maintenance, just like software. We address the 'technical debt' that builds up - those quick fixes and workarounds that gradually undermine your organized spaces.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Process Section -->
     <section class="process" id="process">
@@ -821,26 +923,8 @@
             </div>
         </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container contact-content">
-            <h2>Get In Touch</h2>
-            <p>Ready to transform your space? Let's get started!</p>
-            
-            <div class="contact-cta">
-                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="contact-icon-link">
-                    <svg class="contact-large-icon" viewBox="0 0 24 24">
-                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                        <path d="M8,12V14H16V12H8M8,16V18H13V16H8Z" />
-                    </svg>
-                </a>
-                <p class="contact-text">Get started by completing this form!</p>
-            </div>
-        </div>
-    </section>
 
-     <!-- FAQ Section -->
+    <!-- FAQ Section -->
     <section class="FAQ" id="FAQ">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
@@ -944,6 +1028,78 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="pricing-intro">
+                <h2>Pricing & Time Investment</h2>
+                <p>Transparent, straightforward pricing for transforming your space from chaos to calm</p>
+            </div>
+            
+            <div class="pricing-content">
+                <div class="pricing-header">
+                    <div class="pricing-rate">¥150 per hour</div>
+                </div>
+                
+                <div class="pricing-highlight">
+                    <p>Most single rooms require 3-4 hours to complete (¥450-600 total)</p>
+                </div>
+                
+                <div class="pricing-details">
+                    <h4>What affects the time needed?</h4>
+                    <ul>
+                        <li><strong>Current organization level</strong> - A cluttered bedroom vs. a completely overwhelming home office</li>
+                        <li><strong>Decision complexity</strong> - Sentimental items take longer than basic decluttering</li>
+                        <li><strong>Storage solutions</strong> - Creating new systems vs. optimizing existing ones</li>
+                        <li><strong>Family input</strong> - Gathering "user stories" from everyone who uses the space</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-details">
+                    <h4>What's included in every session:</h4>
+                    <ul>
+                        <li>Pre-session consultation and priority assessment</li>
+                        <li>Full room evaluation using our systematic approach</li>
+                        <li>Hands-on organizing and decluttering</li>
+                        <li>Custom storage solutions designed for your lifestyle</li>
+                        <li>Clear maintenance plan so the system sticks</li>
+                        <li>Follow-up guidance via WeChat for questions</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-highlight">
+                    <p><strong>Most popular approach:</strong> Many clients book a 4-hour session (¥600) to tackle one priority room completely, then schedule additional rooms based on the results.</p>
+                </div>
+                
+                <p><strong>Minimum session:</strong> 3 hours - this ensures enough time to make real progress and implement sustainable systems.</p>
+                
+                <div class="pricing-note">
+                    <p><em>Launching special - as I build my practice in Ningbo, I'm offering this systematic approach at an introductory rate. Book your consultation to discuss your specific space and timeline.</em></p>
+                </div>
+                
+                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="btn" style="margin-top: 1.5rem;">Book Your Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container contact-content">
+            <h2>Get In Touch</h2>
+            <p>Ready to transform your space? Let's get started!</p>
+            
+            <div class="contact-cta">
+                <a href="https://www.notion.so/20809bc1d52780448a74cb467f37bbed?pvs=106" class="contact-icon-link">
+                    <svg class="contact-large-icon" viewBox="0 0 24 24">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                        <path d="M8,12V14H16V12H8M8,16V18H13V16H8Z" />
+                    </svg>
+                </a>
+                <p class="contact-text">Get started by completing this form!</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
@@ -973,6 +1129,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#process">My Process</a></li>
                     <li><a href="#FAQ">FAQ</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
