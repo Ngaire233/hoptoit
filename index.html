@@ -826,7 +826,7 @@ header {
             align-items: flex-start;
         }
 
-        .service-card:hover {
+      .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
@@ -841,6 +841,12 @@ header {
         .service-card.animate-in {
             opacity: 1;
             transform: translateX(0);
+        }
+        
+        /* Hover animation only applies after cards have animated in */
+        .service-card.animate-in:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         .service-card:nth-child(1).animate-in {
