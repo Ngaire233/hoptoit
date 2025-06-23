@@ -1476,6 +1476,63 @@ header {
                 }
             }
         });
+        
+        // Parallax Scroll Effect for Images
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroImage = document.querySelector('.hero-image img');
+            const aboutImage = document.querySelector('.about-image img');
+            let ticking = false;
+            
+            // Only run parallax on devices that can handle it smoothly
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5; // Subtle parallax speed (0.5x)
+                
+                // Hero image parallax
+                if (heroImage) {
+                    const heroSection = heroImage.closest('.hero');
+                    if (heroSection) {
+                        const heroRect = heroSection.getBoundingClientRect();
+                        // Only animate when section is in viewport
+                        if (heroRect.bottom >= 0 && heroRect.top <= window.innerHeight) {
+                            heroImage.style.transform = `translateY(${rate * 0.3}px)`; // Even more subtle for hero
+                        }
+                    }
+                }
+                
+                // About image parallax
+                if (aboutImage) {
+                    const aboutSection = aboutImage.closest('.about');
+                    if (aboutSection) {
+                        const aboutRect = aboutSection.getBoundingClientRect();
+                        const aboutOffset = aboutSection.offsetTop;
+                        // Only animate when section is in viewport
+                        if (aboutRect.bottom >= 0 && aboutRect.top <= window.innerHeight) {
+                            const aboutRate = (scrolled - aboutOffset * 0.5) * -0.3; // Subtle parallax for about
+                            aboutImage.style.transform = `translateY(${aboutRate}px)`;
+                        }
+                    }
+                }
+                
+                ticking = false;
+            }
+            
+            function requestParallax() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+            
+            // Throttled scroll listener
+            window.addEventListener('scroll', requestParallax, { passive: true });
+            
+            // Initial call
+            updateParallax();
+        });
     </script>
 </body>
 </html>
