@@ -1021,10 +1021,19 @@ header {
             .pricing-content {
                 padding: 2rem;
                 margin: 0 1rem;
+                text-align: left; /* Ensure left alignment on mobile */
+            }
+            
+            .pricing-header {
+                text-align: left; /* Left align header on mobile */
             }
             
             .pricing-rate {
                 font-size: 2rem;
+            }
+            
+            .pricing-highlight {
+                text-align: left; /* Left align highlight on mobile */
             }
             
             .pricing-highlight p {
@@ -1034,11 +1043,28 @@ header {
             .pricing-actions {
                 flex-direction: column;
                 gap: 1rem;
+                align-items: flex-start; /* Left align buttons on mobile */
             }
             
             .show-details-btn {
                 font-size: 0.9rem;
                 padding: 10px 20px;
+            }
+            
+            .pricing-details.expanded {
+                padding: 1.5rem; /* Reduce padding on mobile */
+                max-height: 2000px; /* Increase max height for mobile */
+                margin-top: 1.5rem;
+            }
+            
+            .pricing-details {
+                word-wrap: break-word; /* Prevent text overflow */
+                overflow-wrap: break-word;
+            }
+            
+            .pricing-details li {
+                line-height: 1.5; /* Better line spacing on mobile */
+                margin-bottom: 1rem; /* More space between items */
             }
         }
     </style>
