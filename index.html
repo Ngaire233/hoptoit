@@ -494,17 +494,7 @@ header {
             margin: 0 auto;
         }
         
-        /* Animated connecting line */
-        .process-line {
-            position: absolute;
-            left: 40px;
-            top: 80px;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            transition: height 0.8s ease;
-            z-index: 1;
-        }
+
         
         .step {
             position: relative;
@@ -867,10 +857,6 @@ header {
                 padding: 0 1rem;
             }
             
-            .process-line {
-                left: 30px; /* Adjust for smaller step numbers */
-            }
-            
             .step {
                 margin-bottom: 4rem; /* Reduce spacing on mobile */
             }
@@ -1083,7 +1069,6 @@ header {
                 <p>Together we'll tackle your home using these proven Agile-inspired steps that adapt to what we uncover along the way.</p>
             </div>
             <div class="process-container">
-                <div class="process-line"></div>
                 <div class="step" data-step="1">
                     <div class="step-number">1</div>
                     <div class="step-content">
@@ -1416,7 +1401,6 @@ header {
         // Interactive Process Section Animation
         document.addEventListener('DOMContentLoaded', function() {
             const steps = document.querySelectorAll('.step');
-            const processLine = document.querySelector('.process-line');
             let activeStepIndex = 0;
             
             const observerOptions = {
@@ -1448,19 +1432,6 @@ header {
                         step.classList.add('previous');
                     }
                 });
-                
-                // Animate the connecting line
-                updateProcessLine(currentStep);
-            }
-            
-            function updateProcessLine(currentStep) {
-                // Calculate line height based on active step
-                // Adjust for mobile vs desktop
-                const isMobile = window.innerWidth <= 768;
-                const stepHeight = isMobile ? 140 : 176; // Smaller spacing on mobile
-                const lineHeight = (currentStep - 1) * stepHeight + (isMobile ? 30 : 40);
-                
-                processLine.style.height = lineHeight + 'px';
             }
             
             // Observe all steps
@@ -1477,13 +1448,6 @@ header {
                     updateSteps(1);
                 }
             }
-            
-            // Handle window resize for responsive line calculations
-            window.addEventListener('resize', () => {
-                if (activeStepIndex > 0) {
-                    updateProcessLine(activeStepIndex);
-                }
-            });
         });
     </script>
 </body>
