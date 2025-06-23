@@ -392,7 +392,7 @@ header {
             fill: var(--primary);
         }
         
-        /* Pricing Section */
+        /* Pricing Section - Progressive Disclosure */
         .pricing {
             background-color: var(--light);
             text-align: left;
@@ -409,12 +409,11 @@ header {
             border-radius: 15px;
             padding: 3rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 0 auto;
         }
         
         .pricing-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            text-align: center;
             margin-bottom: 2rem;
         }
         
@@ -422,26 +421,111 @@ header {
             font-size: 2.5rem;
             font-weight: bold;
             color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-highlight {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+            text-align: center;
+        }
+        
+        .pricing-highlight p {
+            margin: 0;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .pricing-cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .pricing-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .show-details-btn {
+            background-color: transparent;
+            color: var(--primary);
+            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .show-details-btn:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(140, 111, 95, 0.2);
+        }
+        
+        .show-details-btn.expanded {
+            background-color: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+        
+        .show-details-btn.expanded:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        .details-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .show-details-btn.expanded .details-icon {
+            transform: rotate(180deg);
         }
         
         .pricing-details {
-            text-align: left;
-            margin-bottom: 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .pricing-details.expanded {
+            max-height: 1000px;
+            padding: 2rem;
+            border-top: 2px solid var(--accent);
+            margin-top: 2rem;
         }
         
         .pricing-details h4 {
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-size: 1.2rem;
         }
         
         .pricing-details ul {
             list-style: none;
             padding-left: 0;
+            margin-bottom: 2rem;
         }
         
         .pricing-details li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
         }
@@ -454,15 +538,15 @@ header {
             left: 0;
         }
         
-        .pricing-highlight {
-            background-color: var(--light);
+        .pricing-approach {
+            background-color: var(--secondary);
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             margin: 1.5rem 0;
             border-left: 4px solid var(--primary);
         }
         
-        .pricing-highlight p {
+        .pricing-approach p {
             margin: 0;
             font-weight: bold;
             color: var(--primary);
@@ -471,7 +555,7 @@ header {
         .pricing-note {
             font-style: italic;
             color: #666;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--accent);
         }
@@ -943,10 +1027,18 @@ header {
                 font-size: 2rem;
             }
             
-            .pricing-header {
+            .pricing-highlight p {
+                font-size: 1rem;
+            }
+            
+            .pricing-actions {
                 flex-direction: column;
-                gap: 0.5rem;
-                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .show-details-btn {
+                font-size: 0.9rem;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -1249,6 +1341,14 @@ header {
                     <p>Most single rooms require 3-4 hours to complete (¥450-600 total)</p>
                 </div>
                 
+                <div class="pricing-actions">
+                    <a href="https://hoptoit.netlify.app/consultation.html" class="btn">Book Your Consultation</a>
+                    <button class="show-details-btn">
+                        <span>Show Full Details</span>
+                        <span class="details-icon">▼</span>
+                    </button>
+                </div>
+                
                 <div class="pricing-details">
                     <h4>What's included in every session:</h4>
                     <ul>
@@ -1259,17 +1359,15 @@ header {
                         <li>Clear maintenance plan so the system sticks</li>
                         <li>Follow-up session 1 month later to review and update anything not working</li>
                     </ul>
+                    
+                    <div class="pricing-approach">
+                        <p><strong>Suggested approach:</strong> Book a 4-hour session (¥600) to tackle one priority room completely, then schedule additional rooms based on the results.</p>
+                    </div>
+                    
+                    <div class="pricing-note">
+                        <p><em>Launching special - as I build my clients in Ningbo, I'm offering an introductory rate. Book your consultation to discuss your specific space and timeline.</em></p>
+                    </div>
                 </div>
-                
-                <div class="pricing-highlight">
-                    <p><strong>Suggested approach:</strong> Book a 4-hour session (¥600) to tackle one priority room completely, then schedule additional rooms based on the results.</p>
-                </div>
-                                
-                <div class="pricing-note">
-                    <p><em>Launching special - as I build my clients in Ningbo, I'm offering an introductory rate. Book your consultation to discuss your specific space and timeline.</em></p>
-                </div>
-                
-                <a href="https://hoptoit.netlify.app/consultation.html" class="btn" style="margin-top: 1.5rem;">Book Your Consultation</a>
             </div>
         </div>
     </section>
@@ -1532,6 +1630,31 @@ header {
             
             // Initial call
             updateParallax();
+        });
+        
+        // Pricing Section Progressive Disclosure
+        document.addEventListener('DOMContentLoaded', function() {
+            const showDetailsBtn = document.querySelector('.show-details-btn');
+            const pricingDetails = document.querySelector('.pricing-details');
+            const detailsIcon = document.querySelector('.details-icon');
+            
+            if (showDetailsBtn && pricingDetails && detailsIcon) {
+                showDetailsBtn.addEventListener('click', function() {
+                    const isExpanded = pricingDetails.classList.contains('expanded');
+                    
+                    if (isExpanded) {
+                        // Collapse
+                        pricingDetails.classList.remove('expanded');
+                        showDetailsBtn.classList.remove('expanded');
+                        showDetailsBtn.querySelector('span:first-child').textContent = 'Show Full Details';
+                    } else {
+                        // Expand
+                        pricingDetails.classList.add('expanded');
+                        showDetailsBtn.classList.add('expanded');
+                        showDetailsBtn.querySelector('span:first-child').textContent = 'Hide Details';
+                    }
+                });
+            }
         });
     </script>
 </body>
