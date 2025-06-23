@@ -349,13 +349,36 @@ header {
             border-radius: 10px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
             text-align: left;
+            /* Initial state - hidden and positioned right */
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        .service-card:hover {
+        .service-card.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.3s ease; /* Switch to faster transition for hover effects */
+        }
+        
+        /* Hover animation only applies after cards have animated in */
+        .service-card.animate-in:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Staggered animation delays */
+        .service-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        
+        .service-card:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+        
+        .service-card:nth-child(3) {
+            transition-delay: 0.5s;
         }
         
         .service-card h3 {
@@ -453,54 +476,116 @@ header {
             border-top: 1px solid var(--accent);
         }
         
-        /* Process Section */
+        /* Process Section - Interactive Scroll */
         .process {
             background-color: var(--light);
             text-align: left;
+            padding: 6rem 0;
         }
         
         .process-intro {
             max-width: 800px;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1000px;
+        .process-container {
             position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .process-steps::before {
-            content: '';
+        /* Animated connecting line */
+        .process-line {
             position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent);
+            left: 40px;
+            top: 80px;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: height 0.8s ease;
             z-index: 1;
         }
         
         .step {
             position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6rem;
+            opacity: 0.3;
+            transform: scale(0.9) translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 2;
-            width: 22%;
-            text-align: left;
+        }
+        
+        .step.previous {
+            opacity: 0.6;
+            transform: scale(0.95) translateY(0);
+        }
+        
+        .step.active {
+            opacity: 1;
+            transform: scale(1.05) translateY(0);
         }
         
         .step-number {
             width: 80px;
             height: 80px;
-            background-color: var(--primary);
-            color: var(--light);
+            background-color: var(--accent);
+            color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 1.5rem;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            transition: all 0.6s ease;
+            border: 3px solid transparent;
+        }
+        
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: scale(1.1);
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(140, 111, 95, 0.3);
+        }
+        
+        .step.previous .step-number {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 10px;
+        }
+        
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: all 0.6s ease;
+        }
+        
+        .step.active .step-content h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .step-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            transition: all 0.6s ease;
+        }
+        
+        .step.active .step-content p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark);
         }
         
         /* FAQ Section */
@@ -745,157 +830,112 @@ header {
             text-align: center;
         }
         
-           /* Responsive Styles */
-    @media (max-width: 768px) {
-        .logo a svg {
-            width: 140px; /* Much smaller on mobile */
-        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo a svg {
+                width: 140px; /* Much smaller on mobile */
+            }
+            
+            /* Keep header items side by side, don't stack them */
+            .header-content {
+                flex-direction: row; /* Changed from column */
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Reduce header padding on mobile */
+            header {
+                padding: 0.5rem 0; /* Reduced from 1rem */
+            }
+            
+            /* Make hamburger slightly smaller if needed */
+            .hamburger span {
+                width: 25px; /* Reduced from 30px */
+                height: 2px; /* Reduced from 3px */
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 1rem;
+            }
+            
+            /* Mobile adjustments for interactive process */
+            .process-container {
+                padding: 0 1rem;
+            }
+            
+            .process-line {
+                left: 30px; /* Adjust for smaller step numbers */
+            }
+            
+            .step {
+                margin-bottom: 4rem; /* Reduce spacing on mobile */
+            }
+            
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+                margin-right: 1.5rem;
+            }
+            
+            .step.active .step-number {
+                transform: scale(1.05); /* Less dramatic scaling on mobile */
+            }
+            
+            .step-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .step.active .step-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .step-content p {
+                font-size: 0.95rem;
+            }
+            
+            .step.active .step-content p {
+                font-size: 1.05rem;
+            }
+            
+            .contact-large-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .contact-text {
+                font-size: 1.1rem;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 1rem;
+            }
         
-        /* Keep header items side by side, don't stack them */
-        .header-content {
-            flex-direction: row; /* Changed from column */
-            justify-content: space-between;
-            align-items: center;
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px 20px;
+                max-height: 2000px; /* Make sure this is also increased */
+            }
+            
+            .pricing-content {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+            
+            .pricing-rate {
+                font-size: 2rem;
+            }
+            
+            .pricing-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
         }
-        
-        /* Reduce header padding on mobile */
-        header {
-            padding: 0.5rem 0; /* Reduced from 1rem */
-        }
-        
-        /* Make hamburger slightly smaller if needed */
-        .hamburger span {
-            width: 25px; /* Reduced from 30px */
-            height: 2px; /* Reduced from 3px */
-        }
-        
-        nav ul {
-            margin-top: 1rem;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        .process-steps {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .process-steps::before {
-            display: none;
-        }
-        
-        .step {
-            width: 100%;
-            max-width: 300px;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-large-icon {
-            width: 100px;
-            height: 100px;
-        }
-        
-        .contact-text {
-            font-size: 1.1rem;
-        }
-        
-        .faq-question {
-            padding: 20px;
-            font-size: 1rem;
-        }
-    
-        .faq-item.active .faq-answer {
-            padding: 0 20px 20px 20px;
-            max-height: 2000px; /* Make sure this is also increased */
-        }
-        
-        .pricing-content {
-            padding: 2rem;
-            margin: 0 1rem;
-        }
-        
-        .pricing-rate {
-            font-size: 2rem;
-        }
-        
-        .pricing-header {
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-start;
-        }
-
-      .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        /* Service card animations */
-        .service-card {
-            opacity: 0;
-            transform: translateX(100px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .service-card.animate-in {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Hover animation only applies after cards have animated in */
-        .service-card.animate-in:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .service-card:nth-child(1).animate-in {
-            transition-delay: 0.1s;
-        }
-        
-        .service-card:nth-child(2).animate-in {
-            transition-delay: 0.3s;
-        }
-        
-        .service-card:nth-child(3).animate-in {
-            transition-delay: 0.5s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        /* Service card animations */
-        .service-card {
-            opacity: 0;
-            transform: translateX(100px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .service-card.animate-in {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Hover animation only applies after cards have animated in */
-        .service-card.animate-in:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .service-card:nth-child(1).animate-in {
-            transition-delay: 0.1s;
-        }
-        
-        .service-card:nth-child(2).animate-in {
-            transition-delay: 0.3s;
-        }
-        
-        .service-card:nth-child(3).animate-in {
-            transition-delay: 0.5s;
-        }
-    }
     </style>
 </head>
 <body id="top">
@@ -1042,26 +1082,35 @@ header {
                 <h2>My 4-Step Agile Process</h2>
                 <p>Together we'll tackle your home using these proven Agile-inspired steps that adapt to what we uncover along the way.</p>
             </div>
-            <div class="process-steps">
-                <div class="step">
+            <div class="process-container">
+                <div class="process-line"></div>
+                <div class="step" data-step="1">
                     <div class="step-number">1</div>
-                    <h3>Backlog Creation</h3>
-                    <p>We'll hop through your home together, discovering all the spaces that need attention, gathering user stories and breaking each area into bite-sized, manageable tasks.</p>
+                    <div class="step-content">
+                        <h3>Backlog Creation</h3>
+                        <p>We'll hop through your home together, discovering all the spaces that need attention, gathering user stories and breaking each area into bite-sized, manageable tasks.</p>
+                    </div>
                 </div>
-                <div class="step">
+                <div class="step" data-step="2">
                     <div class="step-number">2</div>
-                    <h3>Sprint Planning</h3>
-                    <p>Together we'll choose which areas excite you most and create a realistic timeline that fits your family's rhythm—no pressure, just smart planning for sustainable progress.</p>
+                    <div class="step-content">
+                        <h3>Sprint Planning</h3>
+                        <p>Together we'll choose which areas excite you most and create a realistic timeline that fits your family's rhythm—no pressure, just smart planning for sustainable progress.</p>
+                    </div>
                 </div>
-                <div class="step">
+                <div class="step" data-step="3">
                     <div class="step-number">3</div>
-                    <h3>Sprint Execution</h3>
-                    <p>We'll divide and conquer! I'll get us going while assigning you tasks you can tackle solo between sessions. We'll work side-by-side on decision-making and system setup, maximizing our time together.</p>
+                    <div class="step-content">
+                        <h3>Sprint Execution</h3>
+                        <p>We'll divide and conquer! I'll get us going while assigning you tasks you can tackle solo between sessions. We'll work side-by-side on decision-making and system setup, maximizing our time together.</p>
+                    </div>
                 </div>
-                <div class="step">
+                <div class="step" data-step="4">
                     <div class="step-number">4</div>
-                    <h3>Review & Iterate</h3>
-                    <p>The magic happens as we work through your space, continuously refining systems based on what we discover to ensure your space truly supports how your family lives.</p>
+                    <div class="step-content">
+                        <h3>Review & Iterate</h3>
+                        <p>The magic happens as we work through your space, continuously refining systems based on what we discover to ensure your space truly supports how your family lives.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1278,7 +1327,7 @@ header {
             }
         });
 
-                // Shrinking Header Functionality
+        // Shrinking Header Functionality
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.querySelector('header');
             let scrollThreshold = 100; // Start shrinking after 100px scroll
@@ -1309,6 +1358,7 @@ header {
             // Check on page load
             updateHeader();
         });
+        
         // FAQ functionality
         document.addEventListener('DOMContentLoaded', function() {
             const faqItems = document.querySelectorAll('.faq-item');
@@ -1336,6 +1386,103 @@ header {
                         question.setAttribute('aria-expanded', 'true');
                     }
                 });
+            });
+        });
+        
+        // Service cards fly-in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observerOptions = {
+                threshold: 0.3, // Wait until 30% of card is visible
+                rootMargin: '0px 0px -100px 0px' // More conservative margin
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        // Stop observing once animated to prevent re-triggering
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+        
+        // Interactive Process Section Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            const processLine = document.querySelector('.process-line');
+            let activeStepIndex = 0;
+            
+            const observerOptions = {
+                threshold: 0.6, // Step needs to be 60% visible to activate
+                rootMargin: '-20% 0px -20% 0px' // More precise triggering
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const stepNumber = parseInt(entry.target.dataset.step);
+                        updateSteps(stepNumber);
+                    }
+                });
+            }, observerOptions);
+            
+            function updateSteps(currentStep) {
+                activeStepIndex = currentStep;
+                
+                steps.forEach((step, index) => {
+                    const stepNumber = index + 1;
+                    
+                    // Remove all classes first
+                    step.classList.remove('active', 'previous');
+                    
+                    if (stepNumber === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNumber < currentStep) {
+                        step.classList.add('previous');
+                    }
+                });
+                
+                // Animate the connecting line
+                updateProcessLine(currentStep);
+            }
+            
+            function updateProcessLine(currentStep) {
+                // Calculate line height based on active step
+                // Adjust for mobile vs desktop
+                const isMobile = window.innerWidth <= 768;
+                const stepHeight = isMobile ? 140 : 176; // Smaller spacing on mobile
+                const lineHeight = (currentStep - 1) * stepHeight + (isMobile ? 30 : 40);
+                
+                processLine.style.height = lineHeight + 'px';
+            }
+            
+            // Observe all steps
+            steps.forEach(step => {
+                observer.observe(step);
+            });
+            
+            // Initialize first step as active if visible
+            const firstStep = steps[0];
+            if (firstStep) {
+                const rect = firstStep.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isVisible) {
+                    updateSteps(1);
+                }
+            }
+            
+            // Handle window resize for responsive line calculations
+            window.addEventListener('resize', () => {
+                if (activeStepIndex > 0) {
+                    updateProcessLine(activeStepIndex);
+                }
             });
         });
     </script>
